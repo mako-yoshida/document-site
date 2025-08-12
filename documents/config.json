@@ -8,6 +8,11 @@
           "name": "全保連戦略分析.md",
           "type": "file",
           "path": "documents/business-strategy/zenpo-strategy.md"
+        },
+        {
+          "name": "プロップテック市場戦略.md",
+          "type": "file",
+          "path": "documents/business-strategy/proptech-market-strategy.md"
         }
       ]
     },
