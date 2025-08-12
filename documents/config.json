@@ -1,0 +1,36 @@
+{
+  "files": [
+    {
+      "name": "サンプルフォルダ",
+      "type": "folder",
+      "children": [
+        {
+          "name": "サンプルテキスト.txt",
+          "type": "file",
+          "path": "documents/sample-folder/sample.txt"
+        },
+        {
+          "name": "README.md",
+          "type": "file",
+          "path": "documents/sample-folder/readme.md"
+        },
+        {
+          "name": "サンプルPDF.pdf",
+          "type": "file",
+          "path": "documents/sample-folder/sample.pdf"
+        }
+      ]
+    },
+    {
+      "name": "技術資料",
+      "type": "folder",
+      "children": [
+        {
+          "name": "JavaScript基礎.md",
+          "type": "file",
+          "path": "documents/technical/javascript-basics.md"
+        }
+      ]
+    }
+  ]
+}
