@@ -1,6 +1,17 @@
 {
   "files": [
     {
+      "name": "ビジネス戦略",
+      "type": "folder",
+      "children": [
+        {
+          "name": "全保連戦略分析.md",
+          "type": "file",
+          "path": "documents/business-strategy/zenpo-strategy.md"
+        }
+      ]
+    },
+    {
       "name": "サンプルフォルダ",
       "type": "folder",
       "children": [
