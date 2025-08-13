@@ -53,14 +53,9 @@
       "type": "folder",
       "children": [
         {
-          "name": "第24回定時株主総会議事録.md",
+          "name": "第24回定時株主総会(事業報告・対処すべき課題).txt",
           "type": "file",
-          "path": "documents/transcripts/shareholders-meeting-24.md"
-        },
-        {
-          "name": "音声文字起こしツール説明.md",
-          "type": "file",
-          "path": "documents/transcripts/transcription-tools.md"
+          "path": "documents/transcripts/shareholders-meeting-24-business-report.txt"
         }
       ]
     }

@@ -1,0 +1,28 @@
+# GitHub Repository Configuration
+# Document Site Management
+
+REPOSITORY_URL=https://github.com/mako-yoshida/document-site
+REPOSITORY_NAME=document-site
+REPOSITORY_OWNER=mako-yoshida
+GITHUB_PAGES_URL=https://mako-yoshida.github.io/document-site
+
+# Branch Configuration
+MAIN_BRANCH=main
+PAGES_BRANCH=main
+
+# GitHub Pages Settings
+PAGES_ENABLED=true
+PAGES_SOURCE=root
+PAGES_CUSTOM_DOMAIN=
+
+# Repository Structure
+DOCUMENTS_PATH=documents/
+CONFIG_FILE=documents/config.json
+BUSINESS_STRATEGY_PATH=documents/business-strategy/
+
+# Authentication (Token stored separately for security)
+# Use: git config credential.helper store
+# Token file: ~/.git-credentials
+
+# Last Updated: 2025-08-12
+# Managed by: Claude Code Assistant
