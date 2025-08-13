@@ -16,8 +16,14 @@ class Navigation {
     // ファイル構造を読み込み
     async loadFileStructure() {
         try {
-            // documentsフォルダの構造を取得
-            const response = await fetch('documents/config.json');
+            // documentsフォルダの構造を取得（キャッシュバスティング）
+            const timestamp = Date.now();
+            const response = await fetch(`documents/config.json?v=${timestamp}`, {
+                cache: 'no-cache',
+                headers: {
+                    'Cache-Control': 'no-cache'
+                }
+            });
             if (response.ok) {
                 const config = await response.json();
                 this.files = config.files;
