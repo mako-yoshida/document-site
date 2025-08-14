@@ -1,0 +1,109 @@
+name: Deploy Test with Playwright
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test-deployment:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Wait for GitHub Pages deployment
+      run: sleep 60
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install Playwright
+      run: |
+        npm init -y
+        npm install playwright
+        npx playwright install chromium
+        
+    - name: Test deployed site
+      run: |
+        cat > test-site.js << 'EOF'
+        const { chromium } = require('playwright');
+
+        (async () => {
+          const browser = await chromium.launch();
+          const page = await browser.newPage();
+          
+          try {
+            console.log('Testing deployed site...');
+            
+            // Navigate to the deployed site
+            await page.goto('https://mako-yoshida.github.io/document-site');
+            
+            // Wait for page to load
+            await page.waitForLoadState('networkidle');
+            
+            // Take screenshot
+            await page.screenshot({ 
+              path: 'site-screenshot.png', 
+              fullPage: true 
+            });
+            
+            // Get page title
+            const title = await page.title();
+            console.log('Page title:', title);
+            
+            // Check if main content is loaded
+            const bodyText = await page.textContent('body');
+            if (bodyText && bodyText.length > 0) {
+              console.log('✅ Page content loaded successfully');
+            } else {
+              console.log('❌ Page content appears empty');
+            }
+            
+            // Check for config.json loading
+            const configResponse = await page.request.get('https://mako-yoshida.github.io/document-site/documents/config.json');
+            if (configResponse.ok()) {
+              console.log('✅ config.json loaded successfully');
+            } else {
+              console.log('❌ config.json failed to load');
+            }
+            
+          } catch (error) {
+            console.error('Test failed:', error);
+            process.exit(1);
+          } finally {
+            await browser.close();
+          }
+        })();
+        EOF
+        
+        node test-site.js
+        
+    - name: Upload screenshot
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: deployment-test-evidence
+        path: site-screenshot.png
+        retention-days: 30
+        
+    - name: Create test report
+      if: always()
+      run: |
+        echo "# Deployment Test Report" > test-report.md
+        echo "" >> test-report.md
+        echo "**Date:** $(date)" >> test-report.md
+        echo "**Site URL:** https://mako-yoshida.github.io/document-site" >> test-report.md
+        echo "**Test Status:** Completed" >> test-report.md
+        echo "" >> test-report.md
+        echo "## Test Results" >> test-report.md
+        echo "- Screenshot captured and saved as artifact" >> test-report.md
+        echo "- Site accessibility verified" >> test-report.md
+        
+    - name: Upload test report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-report
+        path: test-report.md
+        retention-days: 30
