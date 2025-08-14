@@ -107,3 +107,27 @@ jobs:
         name: test-report
         path: test-report.md
         retention-days: 30
+        
+    - name: Set commit status on success
+      if: success()
+      run: |
+        gh api repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          --method POST \
+          --field state=success \
+          --field target_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+          --field description="Site deployment test passed successfully" \
+          --field context="deployment-test/playwright"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Set commit status on failure
+      if: failure()
+      run: |
+        gh api repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          --method POST \
+          --field state=failure \
+          --field target_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+          --field description="Site deployment test failed - check logs" \
+          --field context="deployment-test/playwright"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
