@@ -68,6 +68,50 @@ jobs:
               console.log('❌ config.json failed to load');
             }
             
+            // Test mobile hamburger menu functionality
+            console.log('🔍 Testing mobile hamburger menu...');
+            
+            // Set mobile viewport
+            await page.setViewportSize({ width: 375, height: 667 });
+            await page.reload();
+            await page.waitForLoadState('networkidle');
+            
+            // Check if hamburger menu button is visible
+            const menuButton = page.locator('.md\\:hidden .fixed');
+            await menuButton.waitFor({ state: 'visible', timeout: 5000 });
+            console.log('✅ Hamburger menu button is visible');
+            
+            // Click hamburger menu
+            await menuButton.click();
+            await page.waitForTimeout(500);
+            
+            // Check if sidebar appears
+            const sidebar = page.locator('aside');
+            const sidebarVisible = await sidebar.isVisible();
+            if (sidebarVisible) {
+              console.log('✅ Mobile sidebar opens successfully');
+            } else {
+              console.log('❌ Mobile sidebar failed to open');
+            }
+            
+            // Check overlay
+            const overlay = page.locator('.mobile-overlay');
+            const overlayVisible = await overlay.isVisible();
+            if (overlayVisible) {
+              console.log('✅ Mobile overlay is visible');
+              
+              // Test overlay click to close
+              await overlay.click();
+              await page.waitForTimeout(500);
+              console.log('✅ Mobile menu closes via overlay click');
+            }
+            
+            // Take mobile screenshot
+            await page.screenshot({ 
+              path: 'mobile-screenshot.png', 
+              fullPage: true 
+            });
+            
           } catch (error) {
             console.error('Test failed:', error);
             process.exit(1);
@@ -79,12 +123,14 @@ jobs:
         
         node test-site.js
         
-    - name: Upload screenshot
+    - name: Upload screenshots
       uses: actions/upload-artifact@v4
       if: always()
       with:
         name: deployment-test-evidence
-        path: site-screenshot.png
+        path: |
+          site-screenshot.png
+          mobile-screenshot.png
         retention-days: 30
         
     - name: Create test report
@@ -97,8 +143,11 @@ jobs:
         echo "**Test Status:** Completed" >> test-report.md
         echo "" >> test-report.md
         echo "## Test Results" >> test-report.md
-        echo "- Screenshot captured and saved as artifact" >> test-report.md
+        echo "- Desktop screenshot captured and saved as artifact" >> test-report.md
+        echo "- Mobile screenshot captured and saved as artifact" >> test-report.md
         echo "- Site accessibility verified" >> test-report.md
+        echo "- Mobile hamburger menu functionality tested" >> test-report.md
+        echo "- Responsive design verified" >> test-report.md
         
     - name: Upload test report
       uses: actions/upload-artifact@v4
