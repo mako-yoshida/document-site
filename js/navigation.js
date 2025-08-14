@@ -9,10 +9,12 @@ class Navigation {
     }
 
     async init() {
+        console.log('🚀 Initializing Navigation...');
         await this.loadFileStructure();
         this.renderFileTree();
         this.setupSearch();
         this.setupMobileMenu();
+        console.log('✅ Navigation initialization complete');
     }
 
     // ファイル構造を読み込み
@@ -162,17 +164,25 @@ class Navigation {
 
     // モバイルメニューのセットアップ
     setupMobileMenu() {
+        console.log('🔧 Setting up mobile menu...');
+        
         const mobileMenuButton = document.querySelector('button.md\\:hidden.fixed');
         const sidebar = document.querySelector('aside');
         
+        console.log('📱 Mobile menu button:', mobileMenuButton);
+        console.log('📋 Sidebar element:', sidebar);
+        
         if (!mobileMenuButton || !sidebar) {
-            console.warn('Mobile menu elements not found');
+            console.warn('❌ Mobile menu elements not found');
+            console.log('Available buttons:', document.querySelectorAll('button'));
+            console.log('Available asides:', document.querySelectorAll('aside'));
             return;
         }
 
         // ハンバーガーメニューボタンのクリックイベント
         mobileMenuButton.addEventListener('click', (e) => {
             e.preventDefault();
+            console.log('🖱️ Mobile menu button clicked!');
             this.toggleMobileMenu();
         });
 
@@ -189,16 +199,28 @@ class Navigation {
 
     // モバイルオーバーレイの作成
     createMobileOverlay() {
+        console.log('🎭 Creating mobile overlay...');
+        
+        // 既存のオーバーレイがあるかチェック
+        const existingOverlay = document.querySelector('.mobile-overlay');
+        if (existingOverlay) {
+            console.log('⚠️ Mobile overlay already exists');
+            return;
+        }
+        
         const overlay = document.createElement('div');
         overlay.className = 'mobile-overlay';
         overlay.addEventListener('click', () => {
+            console.log('🎭 Overlay clicked, closing menu');
             this.closeMobileMenu();
         });
         document.body.appendChild(overlay);
+        console.log('✅ Mobile overlay created and added to body');
     }
 
     // モバイルメニューの開閉切り替え
     toggleMobileMenu() {
+        console.log('🔄 Toggle mobile menu, current state:', this.mobileMenuOpen);
         if (this.mobileMenuOpen) {
             this.closeMobileMenu();
         } else {
@@ -208,8 +230,12 @@ class Navigation {
 
     // モバイルメニューを開く
     openMobileMenu() {
+        console.log('📂 Opening mobile menu...');
         const sidebar = document.querySelector('aside');
         const overlay = document.querySelector('.mobile-overlay');
+        
+        console.log('📋 Sidebar for opening:', sidebar);
+        console.log('🎭 Overlay for opening:', overlay);
         
         if (sidebar && overlay) {
             sidebar.classList.add('mobile-sidebar', 'open');
@@ -218,11 +244,15 @@ class Navigation {
             
             // スクロールを無効化
             document.body.style.overflow = 'hidden';
+            console.log('✅ Mobile menu opened successfully');
+        } else {
+            console.error('❌ Failed to open mobile menu - missing elements');
         }
     }
 
     // モバイルメニューを閉じる
     closeMobileMenu() {
+        console.log('📁 Closing mobile menu...');
         const sidebar = document.querySelector('aside');
         const overlay = document.querySelector('.mobile-overlay');
         
@@ -233,6 +263,9 @@ class Navigation {
             
             // スクロールを有効化
             document.body.style.overflow = '';
+            console.log('✅ Mobile menu closed successfully');
+        } else {
+            console.error('❌ Failed to close mobile menu - missing elements');
         }
     }
 }
