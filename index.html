@@ -4,48 +4,145 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ドキュメント管理サイト</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'doc-primary': '#667eea',
+                        'doc-secondary': '#764ba2',
+                        'doc-accent': '#e3f2fd',
+                        'doc-sidebar': '#f8f9fa',
+                        'doc-text': '#333333',
+                        'doc-text-light': '#666666',
+                        'doc-border': '#e9ecef'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/custom-styles.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
-    <div class="container">
-        <header class="header">
-            <h1>📚 ドキュメント管理システム</h1>
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="ファイルを検索...">
+<body class="bg-gray-50 font-sans">
+    <div class="min-h-screen flex flex-col">
+        <!-- Modern Header with Tailwind -->
+        <header class="bg-gradient-to-r from-doc-primary to-doc-secondary text-white shadow-lg">
+            <div class="px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <h1 class="text-2xl font-bold mb-2">📚 ドキュメント管理システム</h1>
+                    <div class="hidden md:block text-sm opacity-75">Documents & Knowledge Base</div>
+                </div>
+                <div class="mt-3 max-w-md">
+                    <div class="relative">
+                        <input type="text" id="searchInput" 
+                               placeholder="ファイルやフォルダを検索..." 
+                               class="w-full px-4 py-2 pl-10 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
+                        <div class="absolute left-3 top-2.5 text-gray-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
 
-        <div class="main-content">
-            <aside class="sidebar">
-                <div class="folder-tree">
-                    <h3>📁 フォルダ一覧</h3>
-                    <div id="fileTree" class="tree">
-                        <div class="loading">読み込み中...</div>
+        <!-- Main Content Area -->
+        <div class="flex flex-1 overflow-hidden">
+            <!-- Improved Sidebar -->
+            <aside class="w-80 bg-white border-r border-doc-border shadow-sm hidden md:block">
+                <div class="p-6 border-b border-doc-border">
+                    <h3 class="text-lg font-semibold text-doc-text flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-doc-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v0"></path>
+                        </svg>
+                        フォルダ一覧
+                    </h3>
+                </div>
+                <div class="p-4">
+                    <div id="fileTree" class="space-y-1">
+                        <div class="text-center py-8 text-doc-text-light">
+                            <div class="animate-spin w-6 h-6 border-2 border-doc-primary border-t-transparent rounded-full mx-auto mb-2"></div>
+                            読み込み中...
+                        </div>
                     </div>
                 </div>
             </aside>
 
-            <main class="content-area">
-                <div class="welcome-message">
-                    <h2>ようこそ！</h2>
-                    <p>左側のフォルダからドキュメントを選択して表示できます。</p>
-                    <div class="supported-formats">
-                        <h3>対応ファイル形式:</h3>
-                        <ul>
-                            <li>📄 テキストファイル (.txt, .md)</li>
-                            <li>📋 PDFファイル (.pdf)</li>
-                        </ul>
+            <!-- Main Content -->
+            <main class="flex-1 bg-white overflow-hidden flex flex-col">
+                <!-- Welcome Screen -->
+                <div class="welcome-message flex-1 flex items-center justify-center p-8">
+                    <div class="text-center max-w-2xl">
+                        <div class="mb-8">
+                            <div class="w-16 h-16 bg-gradient-to-r from-doc-primary to-doc-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                            </div>
+                            <h2 class="text-3xl font-bold text-doc-text mb-3">ようこそ！</h2>
+                            <p class="text-lg text-doc-text-light">左側のフォルダからドキュメントを選択して表示できます。</p>
+                        </div>
+                        
+                        <div class="bg-doc-sidebar p-6 rounded-lg border border-doc-border">
+                            <h3 class="text-lg font-semibold text-doc-text mb-4 flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2 text-doc-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                対応ファイル形式
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="flex items-center p-3 bg-white rounded border">
+                                    <span class="text-2xl mr-3">📄</span>
+                                    <div>
+                                        <div class="font-medium text-doc-text">テキストファイル</div>
+                                        <div class="text-sm text-doc-text-light">.txt, .md</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center p-3 bg-white rounded border">
+                                    <span class="text-2xl mr-3">📋</span>
+                                    <div>
+                                        <div class="font-medium text-doc-text">PDFファイル</div>
+                                        <div class="text-sm text-doc-text-light">.pdf</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div id="documentViewer" class="document-viewer" style="display: none;">
-                    <div class="document-header">
-                        <button id="backButton" class="back-button">← 戻る</button>
-                        <div class="breadcrumb" id="breadcrumb"></div>
+                <!-- Document Viewer -->
+                <div id="documentViewer" class="document-viewer hidden flex-1 flex flex-col">
+                    <div class="bg-doc-sidebar border-b border-doc-border px-6 py-4">
+                        <div class="flex items-center space-x-4">
+                            <button id="backButton" class="flex items-center px-4 py-2 bg-doc-primary text-white rounded-lg hover:bg-blue-600 transition-colors">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                                戻る
+                            </button>
+                            <div class="flex-1">
+                                <div id="breadcrumb" class="text-sm text-doc-text-light flex items-center">
+                                    <!-- Breadcrumb will be populated by JS -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="document-content" id="documentContent"></div>
+                    <div class="document-content flex-1 overflow-auto" id="documentContent">
+                        <!-- Document content will be loaded here -->
+                    </div>
                 </div>
             </main>
+            
+            <!-- Mobile Menu Toggle (for future mobile optimization) -->
+            <button class="md:hidden fixed bottom-6 right-6 w-12 h-12 bg-doc-primary text-white rounded-full shadow-lg flex items-center justify-center">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </div>
     </div>
 

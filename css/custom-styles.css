@@ -1,0 +1,159 @@
+/* カスタムスタイル - 今後の修正・調整用 */
+
+/* ドキュメント管理システム専用のカスタムスタイル */
+.doc-theme {
+  /* カラーテーマ（Tailwindの設定と同期） */
+  --doc-primary: #667eea;
+  --doc-secondary: #764ba2;
+  --doc-accent: #e3f2fd;
+  --doc-sidebar: #f8f9fa;
+  --doc-text: #333333;
+  --doc-text-light: #666666;
+  --doc-border: #e9ecef;
+}
+
+/* ファイルツリーの拡張スタイル */
+.file-tree-item {
+  @apply p-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-doc-accent;
+}
+
+.file-tree-item.folder {
+  @apply font-semibold text-doc-primary;
+}
+
+.file-tree-item.file {
+  @apply text-doc-text-light pl-6;
+}
+
+.file-tree-item.active {
+  @apply bg-doc-primary text-white;
+}
+
+/* ドキュメント表示エリアの拡張 */
+.document-content-enhanced {
+  @apply p-6 max-w-4xl mx-auto;
+}
+
+.document-content-enhanced h1,
+.document-content-enhanced h2,
+.document-content-enhanced h3 {
+  @apply text-doc-text font-bold mb-4;
+}
+
+.document-content-enhanced h1 {
+  @apply text-3xl;
+}
+
+.document-content-enhanced h2 {
+  @apply text-2xl;
+}
+
+.document-content-enhanced h3 {
+  @apply text-xl;
+}
+
+.document-content-enhanced p {
+  @apply mb-4 text-doc-text leading-relaxed;
+}
+
+.document-content-enhanced code {
+  @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono;
+}
+
+.document-content-enhanced pre {
+  @apply bg-gray-100 p-4 rounded-lg overflow-x-auto;
+}
+
+/* アニメーション */
+.fade-in {
+  @apply opacity-0 animate-pulse;
+}
+
+.fade-in.loaded {
+  @apply opacity-100 transition-opacity duration-300;
+}
+
+/* レスポンシブ調整 */
+@media (max-width: 768px) {
+  .mobile-sidebar {
+    @apply fixed inset-y-0 left-0 w-80 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 z-50;
+  }
+  
+  .mobile-sidebar.open {
+    @apply translate-x-0;
+  }
+  
+  .mobile-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 z-40 hidden;
+  }
+  
+  .mobile-overlay.show {
+    @apply block;
+  }
+}
+
+/* PDF表示の改善 */
+.pdf-viewer-enhanced {
+  @apply w-full h-full border border-doc-border rounded-lg shadow-sm;
+}
+
+.pdf-viewer-enhanced iframe {
+  @apply w-full h-full rounded-lg;
+}
+
+/* 検索ハイライト */
+.search-highlight {
+  @apply bg-yellow-200 px-1 rounded;
+}
+
+/* エラー・成功メッセージ */
+.message-error {
+  @apply bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg;
+}
+
+.message-success {
+  @apply bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg;
+}
+
+.message-info {
+  @apply bg-blue-50 border border-blue-200 text-blue-700 px-4 py-3 rounded-lg;
+}
+
+/* ローディング状態 */
+.loading-spinner {
+  @apply animate-spin w-5 h-5 border-2 border-doc-primary border-t-transparent rounded-full;
+}
+
+/* ボタンスタイル */
+.btn-primary {
+  @apply bg-doc-primary hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors duration-200;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 hover:bg-gray-300 text-doc-text px-4 py-2 rounded-lg transition-colors duration-200;
+}
+
+.btn-outline {
+  @apply border border-doc-primary text-doc-primary hover:bg-doc-primary hover:text-white px-4 py-2 rounded-lg transition-colors duration-200;
+}
+
+/* カード形式のファイル表示（将来の拡張用） */
+.file-card {
+  @apply bg-white border border-doc-border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer;
+}
+
+.file-card:hover {
+  @apply border-doc-primary;
+}
+
+.file-card .file-icon {
+  @apply text-2xl mb-2;
+}
+
+.file-card .file-name {
+  @apply font-medium text-doc-text;
+}
+
+.file-card .file-meta {
+  @apply text-sm text-doc-text-light mt-1;
+}
