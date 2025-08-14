@@ -131,3 +131,115 @@ jobs:
           --field context="deployment-test/playwright"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Notify Slack on success
+      if: success()
+      run: |
+        curl -X POST -H 'Content-type: application/json' \
+          --data '{
+            "text": "✅ Document Site Deployment Test Successful",
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "✅ Deployment Test Completed"
+                }
+              },
+              {
+                "type": "section",
+                "fields": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Site:* https://mako-yoshida.github.io/document-site"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Status:* Success"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Commit:* '"${{ github.sha }}"'"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Time:* '"$(date)"'"
+                  }
+                ]
+              },
+              {
+                "type": "actions",
+                "elements": [
+                  {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "View Details"
+                    },
+                    "url": "'"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"'"
+                  },
+                  {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "Visit Site"
+                    },
+                    "url": "https://mako-yoshida.github.io/document-site"
+                  }
+                ]
+              }
+            ]
+          }' \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+          
+    - name: Notify Slack on failure
+      if: failure()
+      run: |
+        curl -X POST -H 'Content-type: application/json' \
+          --data '{
+            "text": "❌ Document Site Deployment Test Failed",
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "❌ Deployment Test Failed"
+                }
+              },
+              {
+                "type": "section",
+                "fields": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Site:* https://mako-yoshida.github.io/document-site"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Status:* Failed"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Commit:* '"${{ github.sha }}"'"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Time:* '"$(date)"'"
+                  }
+                ]
+              },
+              {
+                "type": "actions",
+                "elements": [
+                  {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "Check Logs"
+                    },
+                    "url": "'"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"'"
+                  }
+                ]
+              }
+            ]
+          }' \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
