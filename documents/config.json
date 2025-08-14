@@ -58,6 +58,11 @@
           "path": "documents/transcripts/shareholders-meeting-24-business-report.txt"
         }
       ]
+    },
+    {
+      "name": "モバイルメニューテスト結果.md",
+      "type": "file",
+      "path": "documents/mobile-menu-test-results.md"
     }
   ]
 }
