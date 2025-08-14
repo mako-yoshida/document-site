@@ -162,7 +162,7 @@ class Navigation {
 
     // モバイルメニューのセットアップ
     setupMobileMenu() {
-        const mobileMenuButton = document.querySelector('.md\\:hidden .fixed');
+        const mobileMenuButton = document.querySelector('button.md\\:hidden.fixed');
         const sidebar = document.querySelector('aside');
         
         if (!mobileMenuButton || !sidebar) {

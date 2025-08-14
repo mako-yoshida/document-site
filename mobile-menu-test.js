@@ -18,7 +18,7 @@ async function testMobileMenu() {
         console.log('✅ サイト読み込み完了');
         
         // ハンバーガーメニューボタンの存在確認
-        const menuButton = page.locator('.md\\:hidden .fixed');
+        const menuButton = page.locator('button.md\\:hidden.fixed');
         await menuButton.waitFor({ state: 'visible' });
         console.log('✅ ハンバーガーメニューボタンが表示されている');
         
