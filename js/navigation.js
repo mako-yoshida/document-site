@@ -4,6 +4,7 @@ class Navigation {
         this.fileTree = document.getElementById('fileTree');
         this.searchInput = document.getElementById('searchInput');
         this.files = [];
+        this.mobileMenuOpen = false;
         this.init();
     }
 
@@ -11,6 +12,7 @@ class Navigation {
         await this.loadFileStructure();
         this.renderFileTree();
         this.setupSearch();
+        this.setupMobileMenu();
     }
 
     // ファイル構造を読み込み
@@ -156,6 +158,82 @@ class Navigation {
         });
 
         return filtered;
+    }
+
+    // モバイルメニューのセットアップ
+    setupMobileMenu() {
+        const mobileMenuButton = document.querySelector('.md\\:hidden .fixed');
+        const sidebar = document.querySelector('aside');
+        
+        if (!mobileMenuButton || !sidebar) {
+            console.warn('Mobile menu elements not found');
+            return;
+        }
+
+        // ハンバーガーメニューボタンのクリックイベント
+        mobileMenuButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.toggleMobileMenu();
+        });
+
+        // オーバーレイの作成
+        this.createMobileOverlay();
+        
+        // 画面リサイズ時の処理
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768 && this.mobileMenuOpen) {
+                this.closeMobileMenu();
+            }
+        });
+    }
+
+    // モバイルオーバーレイの作成
+    createMobileOverlay() {
+        const overlay = document.createElement('div');
+        overlay.className = 'mobile-overlay';
+        overlay.addEventListener('click', () => {
+            this.closeMobileMenu();
+        });
+        document.body.appendChild(overlay);
+    }
+
+    // モバイルメニューの開閉切り替え
+    toggleMobileMenu() {
+        if (this.mobileMenuOpen) {
+            this.closeMobileMenu();
+        } else {
+            this.openMobileMenu();
+        }
+    }
+
+    // モバイルメニューを開く
+    openMobileMenu() {
+        const sidebar = document.querySelector('aside');
+        const overlay = document.querySelector('.mobile-overlay');
+        
+        if (sidebar && overlay) {
+            sidebar.classList.add('mobile-sidebar', 'open');
+            overlay.classList.add('show');
+            this.mobileMenuOpen = true;
+            
+            // スクロールを無効化
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    // モバイルメニューを閉じる
+    closeMobileMenu() {
+        const sidebar = document.querySelector('aside');
+        const overlay = document.querySelector('.mobile-overlay');
+        
+        if (sidebar && overlay) {
+            sidebar.classList.remove('mobile-sidebar', 'open');
+            overlay.classList.remove('show');
+            this.mobileMenuOpen = false;
+            
+            // スクロールを有効化
+            document.body.style.overflow = '';
+        }
     }
 }
 

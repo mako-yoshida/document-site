@@ -76,7 +76,8 @@
 /* レスポンシブ調整 */
 @media (max-width: 768px) {
   .mobile-sidebar {
-    @apply fixed inset-y-0 left-0 w-80 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 z-50;
+    @apply fixed inset-y-0 left-0 w-80 bg-white shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out z-50;
+    max-width: 85vw;
   }
   
   .mobile-sidebar.open {
@@ -84,11 +85,48 @@
   }
   
   .mobile-overlay {
-    @apply fixed inset-0 bg-black bg-opacity-50 z-40 hidden;
+    @apply fixed inset-0 bg-black bg-opacity-50 z-40 opacity-0 invisible transition-all duration-300;
   }
   
   .mobile-overlay.show {
+    @apply opacity-100 visible;
+  }
+
+  /* モバイル表示時のサイドバー調整 */
+  aside.mobile-sidebar {
     @apply block;
+  }
+
+  /* ハンバーガーメニューボタンのスタイル調整 */
+  .fixed.bottom-6.right-6 {
+    @apply bg-doc-primary hover:bg-blue-600 shadow-lg;
+    backdrop-filter: blur(10px);
+    /* タッチ操作の最適化 */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* タッチ操作時のフィードバック */
+  .fixed.bottom-6.right-6:active {
+    @apply transform scale-95;
+    transition: transform 0.1s ease-in-out;
+  }
+
+  /* サイドバー内の要素のタッチ最適化 */
+  .mobile-sidebar .tree-item {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(102, 126, 234, 0.1);
+    min-height: 44px;
+    @apply flex items-center;
+  }
+
+  /* モバイルサイドバーのスクロール改善 */
+  .mobile-sidebar {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
 }
 
