@@ -8,6 +8,9 @@ on:
 jobs:
   test-deployment:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      statuses: write
     
     steps:
     - name: Wait for GitHub Pages deployment
