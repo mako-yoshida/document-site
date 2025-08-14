@@ -238,6 +238,8 @@ class Navigation {
         console.log('🎭 Overlay for opening:', overlay);
         
         if (sidebar && overlay) {
+            // CSS競合を回避するためhiddenクラスを一時的に削除
+            sidebar.classList.remove('hidden');
             sidebar.classList.add('mobile-sidebar', 'open');
             overlay.classList.add('show');
             this.mobileMenuOpen = true;
@@ -245,6 +247,7 @@ class Navigation {
             // スクロールを無効化
             document.body.style.overflow = 'hidden';
             console.log('✅ Mobile menu opened successfully');
+            console.log('📋 Sidebar classes after opening:', sidebar.className);
         } else {
             console.error('❌ Failed to open mobile menu - missing elements');
         }
@@ -259,11 +262,14 @@ class Navigation {
         if (sidebar && overlay) {
             sidebar.classList.remove('mobile-sidebar', 'open');
             overlay.classList.remove('show');
+            // デスクトップ表示用にhiddenクラスを復元
+            sidebar.classList.add('hidden');
             this.mobileMenuOpen = false;
             
             // スクロールを有効化
             document.body.style.overflow = '';
             console.log('✅ Mobile menu closed successfully');
+            console.log('📋 Sidebar classes after closing:', sidebar.className);
         } else {
             console.error('❌ Failed to close mobile menu - missing elements');
         }
