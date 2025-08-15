@@ -166,7 +166,7 @@ class Navigation {
     setupMobileMenu() {
         console.log('🔧 Setting up mobile menu...');
         
-        const mobileMenuButton = document.querySelector('button.md\\:hidden.fixed');
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
         const sidebar = document.querySelector('aside');
         
         console.log('📱 Mobile menu button:', mobileMenuButton);
