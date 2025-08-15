@@ -77,7 +77,7 @@ jobs:
             await page.waitForLoadState('networkidle');
             
             // Check if hamburger menu button is visible
-            const menuButton = page.locator('button.md\\:hidden.fixed');
+            const menuButton = page.locator('#mobileMenuButton');
             await menuButton.waitFor({ state: 'visible', timeout: 5000 });
             console.log('✅ Hamburger menu button is visible');
             
