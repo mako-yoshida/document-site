@@ -101,7 +101,32 @@ YouTubeから抽出した音声データ（株主総会音声）を使用して�
 
 ただし、専門用語や固有名詞の認識精度については、用途に応じて適切なシステムを選択することが重要です。
 
+## 関連ファイル
+
+このプロジェクトの詳細なコードとデータは以下に整理されています：
+
+```
+whisperx-project/
+├── README.md                          # プロジェクト詳細説明
+├── whisperx_transcriber.py            # WhisperX文字起こしスクリプト  
+├── compare_transcriptions.py          # 比較分析ツール
+├── transcription_comparison_report.md # 詳細比較レポート
+└── whisperx_output/                   # 文字起こし結果データ
+```
+
+## プロジェクト実行コマンド
+
+```bash
+# WhisperXによる文字起こし
+cd whisperx-project
+python3 whisperx_transcriber.py "音声ファイルパス"
+
+# 結果比較分析
+python3 compare_transcriptions.py
+```
+
 ---
 
 *実施日: 2025年8月15日*  
-*処理時間: インストール約15分、文字起こし約2分40秒、比較分析約1分*
+*処理時間: インストール約15分、文字起こし約2分40秒、比較分析約1分*  
+*プロジェクトファイル: `whisperx-project/` フォルダ参照*
