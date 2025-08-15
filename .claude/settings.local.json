@@ -10,9 +10,12 @@
       "mcp__playwright__browser_wait_for",
       "mcp__playwright__browser_press_key",
       "mcp__playwright__browser_click",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "WebFetch(domain:support.bolt.new)"
     ],
     "deny": [],
     "ask": []
+  }, "env": {
+    "MAX_THINKING_TOKENS": "31999"
   }
 }
