@@ -50,6 +50,11 @@
           "name": "WhisperX音声認識精度分析.md",
           "type": "file",
           "path": "documents/technical/whisperx-transcription-analysis.md"
+        },
+        {
+          "name": "WhisperX Enhanced - 高精度改善版.md",
+          "type": "file",
+          "path": "documents/technical/whisperx-enhanced-improvements.md"
         }
       ]
     },
