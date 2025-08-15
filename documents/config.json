@@ -71,6 +71,16 @@
           "name": "第24回定時株主総会(事業報告・対処すべき課題)_WhisperX版.txt",
           "type": "file",
           "path": "documents/transcripts/shareholders-meeting-24-business-report-whisperx.txt"
+        },
+        {
+          "name": "第24回定時株主総会(事業報告・対処すべき課題)_Enhanced版.txt",
+          "type": "file", 
+          "path": "documents/transcripts/第24回定時株主総会(事業報告・対処すべき課題)_Enhanced版.txt"
+        },
+        {
+          "name": "Enhanced版改善効果レポート.md",
+          "type": "file",
+          "path": "documents/transcripts/Enhanced版改善効果レポート.md"
         }
       ]
     },
