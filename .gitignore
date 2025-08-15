@@ -1,0 +1,15 @@
+# GitHub CLI setup scripts
+github-auth.sh
+install-github-cli*.sh
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.log
