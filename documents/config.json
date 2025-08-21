@@ -17,6 +17,17 @@
       ]
     },
     {
+      "name": "AIニュース",
+      "type": "folder",
+      "children": [
+        {
+          "name": "AI週報：2025年8月15-21日の包括的動向.md",
+          "type": "file",
+          "path": "documents/technical/ai-weekly-report-2025-08-15-21.md"
+        }
+      ]
+    },
+    {
       "name": "サンプルフォルダ",
       "type": "folder",
       "children": [
