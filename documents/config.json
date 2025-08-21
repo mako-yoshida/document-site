@@ -65,6 +65,11 @@
           "name": "Claude Code Sub-Agent 制限事項検証.md",
           "type": "file",
           "path": "documents/technical/claude-code-sub-agent-limitations-verification.md"
+        },
+        {
+          "name": "バックログバーンダウンチャートの効果的活用ガイド.md",
+          "type": "file",
+          "path": "documents/technical/burndown-chart-guide.md"
         }
       ]
     },
