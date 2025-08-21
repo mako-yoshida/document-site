@@ -55,6 +55,11 @@
           "name": "WhisperX Enhanced - 高精度改善版.md",
           "type": "file",
           "path": "documents/technical/whisperx-enhanced-improvements.md"
+        },
+        {
+          "name": "Claude Code Sub-Agent ファクトチェック解決策.md",
+          "type": "file",
+          "path": "documents/technical/claude-code-sub-agent-factcheck-solutions.md"
         }
       ]
     },
