@@ -60,6 +60,11 @@
           "name": "Claude Code Sub-Agent ファクトチェック解決策.md",
           "type": "file",
           "path": "documents/technical/claude-code-sub-agent-factcheck-solutions.md"
+        },
+        {
+          "name": "Claude Code Sub-Agent 制限事項検証.md",
+          "type": "file",
+          "path": "documents/technical/claude-code-sub-agent-limitations-verification.md"
         }
       ]
     },
