@@ -1,6 +1,17 @@
 {
   "files": [
     {
+      "name": "アジャイル開発",
+      "type": "folder",
+      "children": [
+        {
+          "name": "アジャイル開発における3つの重要概念の実践ガイド.md",
+          "type": "file",
+          "path": "documents/agile-development/agile-development-best-practices.md"
+        }
+      ]
+    },
+    {
       "name": "ビジネス戦略",
       "type": "folder",
       "children": [
