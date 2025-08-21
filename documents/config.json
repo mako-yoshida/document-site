@@ -28,6 +28,17 @@
       ]
     },
     {
+      "name": "テスト・検証結果",
+      "type": "folder",
+      "children": [
+        {
+          "name": "モバイルメニューテスト結果.md",
+          "type": "file",
+          "path": "documents/mobile-menu-test-results.md"
+        }
+      ]
+    },
+    {
       "name": "サンプルフォルダ",
       "type": "folder",
       "children": [
@@ -114,11 +125,6 @@
           "path": "documents/transcripts/Enhanced版改善効果レポート.md"
         }
       ]
-    },
-    {
-      "name": "モバイルメニューテスト結果.md",
-      "type": "file",
-      "path": "documents/mobile-menu-test-results.md"
     }
   ]
 }
